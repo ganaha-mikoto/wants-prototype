@@ -1,15 +1,17 @@
-class Request < ApplicationRecord
-  belongs_to :user
-  has_many :products
-  has_many :comments
-  has_one_attached :image
+class User < ApplicationRecord
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+  validates :first_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥々ー]/ }
+  validates :last_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥々ー]/ }
+  validates :nickname, presence: true
+  validates :password, format: {with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i}
+
+  validates :first_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
+  validates :last_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
+  validates :birthday, presence: true
+
+  has_many :requests, dependent: :destroy
+  has_many :products, dependent: :destroy
+  has_many :question_response
   has_many :histories
-
-  extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :category
-  belongs_to_active_hash :shipping_charge
-
-  validates :title, :description, :category_id, :shipping_charge_id, presence: true
-  validates :category_id, :shipping_charge_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :max_price, :min_price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: "must be between 300 and 9999999" }
 end
