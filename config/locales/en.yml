@@ -31,3 +31,11 @@
 
 en:
   hello: "Hello world"
+
+# config/locales/ja.yml
+ja:
+  hello: "こんにちは"
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      blank: "を入力してください"

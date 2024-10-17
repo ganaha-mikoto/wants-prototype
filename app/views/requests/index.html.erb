@@ -130,7 +130,8 @@
       <% if @requests.present? %>
         <% @requests.each do |request| %>
       <li class='list'>
-            <%= link_to request_path(request) do %>
+                <%= link_to "#" do %>
+            <%# <%= link_to request_path(request) do %> 
         <div class='item-img-content'>
         <% if request.image.present? %>
                   <%= image_tag request.image, class: "item-img" %>

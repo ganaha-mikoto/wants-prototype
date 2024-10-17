@@ -1,5 +1,6 @@
 class RequestsController < ApplicationController
   def index
+    @requests = Request.all
   end
 
   def new
@@ -8,8 +9,10 @@ class RequestsController < ApplicationController
 
   def create
     @request = Request.new(request_params) # リクエストの作成
+    @request.user = current_user # ログインユーザーをリクエストのユーザーに設定
+
     if @request.save
-      redirect_to requests_path, notice: 'リクエストが作成されました。'
+      redirect_to root_path, notice: 'リクエストが作成されました。'
     else
       render :new
     end
