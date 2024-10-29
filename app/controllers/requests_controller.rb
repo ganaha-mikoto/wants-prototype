@@ -16,13 +16,15 @@ class RequestsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-
-
-    def show
-      
-    end
   end
 
+
+
+  def show
+    @request = Request.find(params[:id])
+  end
+
+  
   private
 
   def request_params
