@@ -14,7 +14,7 @@ class RequestsController < ApplicationController
     if @request.save
       redirect_to root_path, notice: 'リクエストが作成されました。'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
