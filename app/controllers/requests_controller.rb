@@ -16,6 +16,11 @@ class RequestsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+
+
+    def show
+      
+    end
   end
 
   private
