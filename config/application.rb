@@ -10,7 +10,12 @@ module WantsPrototype
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
-
+    config.i18n.default_locale = :ja
+    config.time_zone = 'Tokyo'
+    config.active_storage.variant_processor = :mini_magick
+    config.i18n.available_locales = [:en, :ja]
+    # ロケールファイルのロードパスを指定
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -18,5 +23,6 @@ module WantsPrototype
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.autoload_paths += %W(#{config.root}/app/models/active_hashes)
   end
 end
