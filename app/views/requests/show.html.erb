@@ -16,10 +16,10 @@
     </div>
     <div class="item-price-box">
       <span class="item-price">
-        ¥ <%= @request.max_price %>
+        上限 ¥ <%= @request.max_price %>
       </span>
         <span class="item-price">
-        ¥ <%= @request.min_price %>
+        下限 ¥ <%= @request.min_price %>
       </span>
       <span class="item-postage">
         <%= @request.shipping_charge.name %>
@@ -83,5 +83,8 @@
   </div>
   <a href="#" class="another-item"><%= @request.category.name %>をもっと見る</a>
 </div>
-
+<%= link_to(new_request_path, class: 'purchase-btn') do %>
+  <span class='purchase-btn-text'>出品する</span>
+  <%= image_tag 'icon_camera.png', size: '185x50', class: "purchase-btn-icon" %>
+<% end %>
 <%= render "shared/footer" %>
