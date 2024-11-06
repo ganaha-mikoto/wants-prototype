@@ -25,7 +25,15 @@
         <%= @request.shipping_charge.name %>
       </span>
     </div>
-
+    <% if user_signed_in? %>
+      <% if @request.user == current_user %>
+        <%= link_to "商品の編集", edit_request_path(@request), method: :get, class: "item-red-btn" %>
+        <p class="or-text">or</p>
+        <%= link_to "削除", request_path(@request), data: { turbo_method: :delete }, class: "item-destroy" %>
+      <%# <% elsif @request.history.nil? %> 
+        <%# <%= link_to "購入画面に進む", request_orders_path(@request), data: { turbo: false }, method: :get, class: "item-red-btn" %> 
+      <% end %>
+    <% end %>
     <div class="item-explain-box">
       <span>商品説明</span>
       <p><%= @request.description %></p>
