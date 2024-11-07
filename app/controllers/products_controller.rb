@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+
+
   def index
     @prodeucts = Product.all
   end
@@ -21,15 +23,42 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @request = Request.find(params[:request_id])
+    @product = @request.products.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path, alert: '商品が見つかりません'
   end
 
   def edit
+    @request = Request.find(params[:request_id])
+    @product = Product.find(params[:id])
+    
+    if @product.user != current_user
+      redirect_to root_path, alert: '編集権限がありません'
+    end
   end
 
   def update
+    @request = Request.find(params[:request_id])
+    @product = Product.find(params[:id])
+
+    if @product.update(product_params)
+      redirect_to request_product_path(@request, @product), notice: '商品情報が更新されました'
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @request = Request.find(params[:request_id])
+    @product = Product.find(params[:id])
+
+    if @product.user == current_user
+      @product.destroy
+      redirect_to root_path, notice: 'リクエストが削除されました。'
+    else
+      redirect_to root_path, alert: 'このリクエストを削除する権限がありません。'
+    end
   end
 
   private
