@@ -9,6 +9,17 @@
   padding: 15px;
 }
 
+.exhibit-btn {
+  width: 120px;
+  background: #EA4335;
+  text-align: center;
+  border-radius: 4%;
+  bottom: 32px;
+  right: 32px;
+  position: fixed;
+  padding: 15px;
+}
+
 .purchase-btn-text {
   color: #fff;
   display: block;
@@ -16,6 +27,7 @@
   text-decoration: none;
   margin-bottom: 5px;
 }
+
 
 .purchase-btn-icon {
   width: 60%;
