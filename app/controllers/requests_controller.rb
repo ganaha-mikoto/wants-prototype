@@ -27,7 +27,7 @@ class RequestsController < ApplicationController
 
   def show
     @request = Request.find(params[:id])
-    @products = @request.products  # 追加：リクエストに関連する商品を取得
+    @products = @request.products.includes(:user)
   end
 
 
