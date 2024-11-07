@@ -3,7 +3,7 @@
     <% if @products.present? %>
       <% @products.each do |product| %>
         <li class='list'>
-          <%= link_to "#" do %>
+          <%= link_to request_product_path(@request, product) do %>
             <div class='item-img-content'>
               <% if product.image.present? %>
                 <%= image_tag product.image, class: "item-img" %>
@@ -14,11 +14,11 @@
                 <%= product.title %>
               </h3>
               <div class='item-price'>
-                <span><%= product.max_price %>円<br><%= product.shipping_charge.name %></span>
-                <div class='star-btn'>
+                                <div class='star-btn'>
                   <%= image_tag "star.png", class: "star-icon" %>
                   <span class='star-count'>0</span>
                 </div>
+                <span><%= product.price %>円</span>
               </div>
             </div>
           <% end %>
@@ -26,9 +26,7 @@
       <% end %>
     <% else %>
       <li class='list'>
-        <h2 class='item-name'>
-          商品を出品してね！
-        </h2>
+        <h2 class='item-name'>商品がありません</h2>
       </li>
     <% end %>
   </ul>

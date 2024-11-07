@@ -41,7 +41,10 @@
         <span>不適切な商品の通報</span>
       </div>
     </div>
-        <%= link_to "出品画面に進む", '#', data: { turbo: false }, method: :get, class: "item-red-btn" %>
+      <%= link_to(new_request_product_path(@request), class: 'exhibit-btn') do %>
+  <span class='purchase-btn-text'>出品する</span>
+  <%= image_tag 'icon_camera.png', size: '185x50', class: "purchase-btn-icon" %>
+<% end %>
       <% end %>
     <% end %>
     <div class="item-explain-box">
@@ -92,9 +95,5 @@
   </div>
   <a href="#" class="another-item"><%= @request.category.name %>をもっと見る</a>
 </div>
-<%= link_to(new_request_path, class: 'purchase-btn') do %>
-  <span class='purchase-btn-text'>保存する</span>
-  <%= image_tag 'icon_camera.png', size: '185x50', class: "purchase-btn-icon" %>
-<% end %>
 
 <%= render "shared/footer" %>
