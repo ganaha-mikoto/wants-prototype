@@ -1,5 +1,7 @@
 class RequestsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_request, only: [:show, :edit, :update, :destroy]
+
   
   def index
     @requests = Request.all
@@ -22,8 +24,33 @@ class RequestsController < ApplicationController
 
 
 
+
   def show
     @request = Request.find(params[:id])
+  end
+
+
+  def edit
+    if @request.user != current_user #|| @request.history.present?
+      redirect_to root_path
+    end
+  end
+
+  def update
+    if @request.update(request_params)
+      redirect_to @request
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    if @request.user == current_user
+      @request.destroy
+      redirect_to root_path, notice: 'リクエストが削除されました。'
+    else
+      redirect_to root_path, alert: 'このリクエストを削除する権限がありません。'
+    end
   end
 
 
@@ -31,5 +58,11 @@ class RequestsController < ApplicationController
 
   def request_params
     params.require(:request).permit(:title, :description, :category_id, :max_price, :min_price, :image, :shipping_charge_id)
+  end
+
+  def set_request
+    @request = Request.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_path, alert: 'リクエストが見つかりません。'
   end
 end

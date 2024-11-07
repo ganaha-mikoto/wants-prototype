@@ -25,7 +25,15 @@
         <%= @request.shipping_charge.name %>
       </span>
     </div>
-
+    <% if user_signed_in? %>
+      <% if @request.user == current_user %>
+        <%= link_to "商品の編集", edit_request_path(@request), method: :get, class: "item-red-btn" %>
+        <p class="or-text">or</p>
+        <%= link_to "削除", request_path(@request), data: { turbo_method: :delete }, class: "item-destroy" %>
+      <% else %> 
+        <%= link_to "出品画面に進む", '#', data: { turbo: false }, method: :get, class: "item-red-btn" %>
+      <% end %>
+    <% end %>
     <div class="item-explain-box">
       <span>商品説明</span>
       <p><%= @request.description %></p>
@@ -84,7 +92,7 @@
   <a href="#" class="another-item"><%= @request.category.name %>をもっと見る</a>
 </div>
 <%= link_to(new_request_path, class: 'purchase-btn') do %>
-  <span class='purchase-btn-text'>出品する</span>
+  <span class='purchase-btn-text'>保存する</span>
   <%= image_tag 'icon_camera.png', size: '185x50', class: "purchase-btn-icon" %>
 <% end %>
 <%= render "shared/footer" %>
