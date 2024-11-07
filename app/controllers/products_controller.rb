@@ -4,15 +4,17 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @prodeucts = Product.new
+    @request = Request.find(params[:request_id])
+    @product = Product.new
   end
 
   def create
-    @product = Product.new(product_params) # リクエストの作成
-    @product.user = current_user # ログインユーザーをリクエストのユーザーに設定
-
+    @request = Request.find(params[:request_id])
+    @product = @request.products.build(product_params)
+    @product.user = current_user
+    
     if @product.save
-      redirect_to root_path, notice: '出品が完了しました。'
+      redirect_to request_path(@request), notice: '商品が出品されました'
     else
       render :new, status: :unprocessable_entity
     end
@@ -28,5 +30,19 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def product_params
+    params.require(:product).permit(
+      :title, 
+      :description, 
+      :price, 
+      :image,
+      :condition_id,
+      :shipping_area_id,
+      :shipping_day_id
+    )
   end
 end
