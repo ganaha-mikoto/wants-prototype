@@ -35,7 +35,7 @@
         <span>不適切な商品の通報</span>
       </div>
     </div>
-      <%= link_to(new_product_product_path(@product), class: 'exhibit-btn') do %>
+      <%= link_to(new_request_product_path(@request), class: 'exhibit-btn') do %>
   <span class='purchase-btn-text'>出品する</span>
   <%= image_tag 'icon_camera.png', size: '185x50', class: "purchase-btn-icon" %>
 <% end %>
@@ -65,6 +65,8 @@
         </tr>
       </tbody>
     </table>
+              <%= link_to "購入画面に進む", "#", data: { turbo: false }, method: :get, class: "item-red-btn" %>
+
   </div>
   <%# /商品の概要 %>
   <div class="comment-box">
