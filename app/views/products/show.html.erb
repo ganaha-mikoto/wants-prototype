@@ -4,11 +4,11 @@
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
-      <%= @request.title %> 
+      <%= @product.title %> 
     </h2>
     <div class="item-img-content">
-      <% if @request.image.attached? %>
-        <%= image_tag @request.image, class: "item-box-img" %>
+      <% if @product.image.attached? %>
+        <%= image_tag @product.image, class: "item-box-img" %>
       <% else %>
         <%= image_tag 'default_image.png', class: "item-box-img" %>
       <% end %>
@@ -16,20 +16,14 @@
     </div>
     <div class="item-price-box">
       <span class="item-price">
-        上限 ¥ <%= @request.max_price %>
-      </span>
-        <span class="item-price">
-        下限 ¥ <%= @request.min_price %>
-      </span>
-      <span class="item-postage">
-        <%= @request.shipping_charge.name %>
+        ¥<%= @product.price %>
       </span>
     </div>
     <% if user_signed_in? %>
-      <% if @request.user == current_user %>
-        <%= link_to "商品の編集", edit_request_path(@request), method: :get, class: "item-red-btn" %>
+      <% if @product.user == current_user %>
+        <%= link_to "商品の編集", edit_request_product_path(@product), method: :get, class: "item-red-btn" %>
         <p class="or-text">or</p>
-        <%= link_to "削除", request_path(@request), data: { turbo_method: :delete }, class: "item-destroy" %>
+        <%= link_to "削除", request_product_path(@product), data: { turbo_method: :delete }, class: "item-destroy" %>
       <% else %> 
           <div class="option">
       <div class="favorite-btn">
@@ -49,29 +43,32 @@
     <% end %>
     <div class="item-explain-box">
       <span>商品説明</span>
-      <p><%= @request.description %></p>
+      <p><%= @product.description %></p>
     </div>
     <table class="detail-table">
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= @request.user.nickname %></td>
+          <td class="detail-value"><%= @product.user.nickname %></td>
         </tr>
         <tr>
-          <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= @request.category.name %></td>
+          <th class="detail-item">商品の状態</th>
+          <td class="detail-value"><%= @product.condition.name %></td>
         </tr>
         <tr>
-          <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= @request.shipping_charge.name %></td>
+          <th class="detail-item">発送元の地域</th>
+          <td class="detail-value"><%= @product.shipping_area.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">発送日の目安</th>
+          <td class="detail-value"><%= @product.shipping_day.name %></td>
         </tr>
       </tbody>
     </table>
+              <%= link_to "購入画面に進む", "#", data: { turbo: false }, method: :get, class: "item-red-btn" %>
+
   </div>
   <%# /商品の概要 %>
-  <H1></H1>
-<%= render "products/index" %>
-
   <div class="comment-box">
     <form>
       <textarea class="comment-text"></textarea>
@@ -94,7 +91,6 @@
       後ろの商品 ＞
     </a>
   </div>
-  <a href="#" class="another-item"><%= @request.category.name %>をもっと見る</a>
 </div>
 
 <%= render "shared/footer" %>

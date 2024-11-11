@@ -68,7 +68,7 @@
       会員数日本一位
     </h2>
     <p class='ad-explain'>
-      FURIMAは、フリマアプリで最も人気。
+      Wantsは、フリマアプリで最も人気。
     </p>
     <p class='ad-explain'>
       出品・購入回数も業界最多です！
@@ -86,7 +86,7 @@
   <%# FURIMAの特徴 %>
   <div class='feature-contents'>
     <h2 class='title'>
-      FURIMAの特徴
+      Wantsの特徴
     </h2>
     <ul class='feature-lists'>
       <li class='list'>
@@ -120,67 +120,61 @@
   </div>
   <%# /FURIMAの特徴 %>
 
-  <%# 商品一覧 %>
+  <%# 商品一覧部分のみ表示 %>
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
     <div class="subtitle">
-      新規投稿商品
+      新規投稿依頼
     </div>
     <ul class='item-lists'>
       <% if @requests.present? %>
         <% @requests.each do |request| %>
-      <li class='list'>
-                <%# <%= link_to "#" do %> 
-            <%= link_to request_path(request) do %> 
-        <div class='item-img-content'>
-        <% if request.image.present? %>
+          <li class='list'>
+            <%= link_to request_path(request) do %>
+              <div class='item-img-content'>
+                <% if request.image.present? %>
                   <%= image_tag request.image, class: "item-img" %>
-        <% end %>
-        <%# ヒストリーがあるかないかでの解決ずみのリクエストの表示の仕方の変更 %>
-                <%# <% if request.history.present? %>
-                  <%# <div class='sold-out'> %>
-                    <%# <span>Sold Out!!</span> %>
-                  <%# </div> %>
-                <%# <% end %>  
-
-        </div>
-        <div class='item-info'>
-          <h3 class='item-name'>
+                <% else %>
+                  <%= image_tag 'default_image.png', class: "item-img" %>
+                <% end %>
+              </div>
+              <div class='item-info'>
+                <h3 class='item-name'>
                   <%= request.title %>
-          </h3>
-          <div class='item-price'>
+                </h3>
+                <div class='item-price'>
                   <span><%= request.max_price %>円<br><%= request.shipping_charge.name %></span>
-            <div class='star-btn'>
+                  <div class='star-btn'>
                     <%= image_tag "star.png", class: "star-icon" %>
-              <span class='star-count'>0</span>
-            </div>
-          </div>
-        </div>
-        <% end %>
-      </li>
+                    <span class='star-count'>0</span>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </li>
         <% end %>
       <% else %>
-      <li class='list'>
-        <%= link_to '#' do %>
-        <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
-        <div class='item-info'>
-          <h3 class='item-name'>
-            商品を出品してね！
-          </h3>
-          <div class='item-price'>
-            <span>99999999円<br>(税込み)</span>
-            <div class='star-btn'>
-              <%= image_tag "star.png", class:"star-icon" %>
-              <span class='star-count'>0</span>
+        <li class='list'>
+          <%= link_to '#' do %>
+            <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
+            <div class='item-info'>
+              <h3 class='item-name'>
+                依頼をしてね！
+              </h3>
+              <div class='item-price'>
+                <span>99999999円<br>(税込み)</span>
+                <div class='star-btn'>
+                  <%= image_tag "star.png", class:"star-icon" %>
+                  <span class='star-count'>0</span>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <% end %>
-      </li>
+          <% end %>
+        </li>
       <% end %>
     </ul>
   </div>
-  <%# /商品一覧 %>
+  <%# /商品一覧部分のみ表示 %>
 </div>
 <%= link_to(new_request_path, class: 'purchase-btn') do %>
   <span class='purchase-btn-text'>依頼する</span>
