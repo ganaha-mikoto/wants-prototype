@@ -7,6 +7,8 @@
             <div class='item-img-content'>
               <% if product.image.present? %>
                 <%= image_tag product.image, class: "item-img" %>
+              <% else %>
+                <%= image_tag 'default_image.png', class: "item-img" %>
               <% end %>
             </div>
             <div class='item-info'>
@@ -14,7 +16,7 @@
                 <%= product.title %>
               </h3>
               <div class='item-price'>
-                                <div class='star-btn'>
+                <div class='star-btn'>
                   <%= image_tag "star.png", class: "star-icon" %>
                   <span class='star-count'>0</span>
                 </div>
@@ -25,9 +27,7 @@
         </li>
       <% end %>
     <% else %>
-      <li class='list'>
-        <h2 class='item-name'>商品がありません</h2>
-      </li>
+        <h3 class='item-name'>商品はまだありません</h3>
     <% end %>
   </ul>
 </div>
