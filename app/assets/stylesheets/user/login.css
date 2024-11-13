@@ -17,4 +17,12 @@
 .login-flash-message {
   text-align: center;
   color: red;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.login-flash-message:not(:empty) {
+  padding: 10px 0;
+  margin-bottom: 20px;
 }

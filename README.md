@@ -54,7 +54,7 @@
 - belongs_to :request
 - has_one :purchase
 
-## purchases テーブル
+## shipping_address テーブル
 
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |

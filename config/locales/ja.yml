@@ -7,4 +7,13 @@ ja:
     formats:
       default: "%Y/%m/%d"
       short: "%m/%d"
-      long: "%Y年%m月%d日" 
+      long: "%Y年%m月%d日"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              invalid: "は有効なメールアドレスの形式で入力してください"
+            password:
+              invalid: "は半角英数字混合で入力してください" 

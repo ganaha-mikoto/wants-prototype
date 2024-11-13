@@ -1,13 +1,14 @@
 class Product < ApplicationRecord
   belongs_to :user
   belongs_to :request
-  has_one :purchase
+  has_one :shipping_address
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :condition
   belongs_to_active_hash :shipping_area
   belongs_to_active_hash :shipping_day
+  belongs_to :shipping_charge
 
   validates :title, :description, :condition_id, :shipping_area_id, :shipping_day_id, presence: true
   validates :condition_id, :shipping_area_id, :shipping_day_id, numericality: { other_than: 1, message: "can't be blank" }
