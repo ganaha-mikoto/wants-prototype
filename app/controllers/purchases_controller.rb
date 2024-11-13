@@ -1,3 +1,5 @@
+require 'payjp'
+
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_product, only: [:index, :create]
@@ -10,13 +12,17 @@ class PurchasesController < ApplicationController
 
   def create
     @purchase_form = PurchaseForm.new(purchase_params)
+    @purchase_form.user_id = current_user.id
+    @purchase_form.product_id = @product.id
+    @purchase_form.request_id = params[:request_id]
+    @purchase_form.token = params[:token]
+
     if @purchase_form.valid?
       pay_product
       @purchase_form.save
       redirect_to root_path
     else
       gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-      Rails.logger.info(@purchase_form.errors.full_messages)
       render :index, status: :unprocessable_entity
     end
   end
@@ -25,14 +31,9 @@ class PurchasesController < ApplicationController
 
   def purchase_params
     params.require(:purchase_form).permit(
-      :postal_code, :prefecture_id, :city, :addresses, 
-      :building, :phone_number
-    ).merge(
-      user_id: current_user.id,
-      request_id: @product.request_id,
-      product_id: @product.id,
-      token: params[:token]
-    )
+      :postal_code, :prefecture_id, :city,
+      :addresses, :building, :phone_number
+    ).merge(token: params[:token])
   end
 
   def pay_product
