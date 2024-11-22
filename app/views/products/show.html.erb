@@ -65,8 +65,13 @@
         </tr>
       </tbody>
     </table>
-              <%= link_to "購入画面に進む", "#", data: { turbo: false }, method: :get, class: "item-red-btn" %>
-
+    <% if user_signed_in? %>
+      <% if current_user.id != @product.user_id %>
+        <%= link_to "購入画面に進む", request_product_purchases_path(@request, @product), data: { turbo: false }, class:"item-red-btn" %>
+      <% end %>
+    <% else %>
+      <%= link_to "購入画面に進む", new_user_session_path, class:"item-red-btn" %>
+    <% end %>
   </div>
   <%# /商品の概要 %>
   <div class="comment-box">
