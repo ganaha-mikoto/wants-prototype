@@ -1,0 +1,33 @@
+<div class='item-contents'>
+  <ul class='item-lists'>
+    <% if @products.present? %>
+      <% @products.each do |product| %>
+        <li class='list'>
+          <%= link_to request_product_path(@request, product) do %>
+            <div class='item-img-content'>
+              <% if product.image.present? %>
+                <%= image_tag product.image, class: "item-img" %>
+              <% else %>
+                <%= image_tag 'default_image.png', class: "item-img" %>
+              <% end %>
+            </div>
+            <div class='item-info'>
+              <h3 class='item-name'>
+                <%= product.title %>
+              </h3>
+              <div class='item-price'>
+                <div class='star-btn'>
+                  <%= image_tag "star.png", class: "star-icon" %>
+                  <span class='star-count'>0</span>
+                </div>
+                <span><%= product.price %>円</span>
+              </div>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    <% else %>
+        <h3 class='item-name'>商品はまだありません</h3>
+    <% end %>
+  </ul>
+</div>

@@ -1,0 +1,101 @@
+<%= render "shared/header" %>
+
+<%# 商品の概要 %>
+<div class="item-show">
+  <div class="item-box">
+    <h2 class="name">
+      <%= @product.title %> 
+    </h2>
+    <div class="item-img-content">
+      <% if @product.image.attached? %>
+        <%= image_tag @product.image, class: "item-box-img" %>
+      <% else %>
+        <%= image_tag 'default_image.png', class: "item-box-img" %>
+      <% end %>
+
+    </div>
+    <div class="item-price-box">
+      <span class="item-price">
+        ¥<%= @product.price %>
+      </span>
+    </div>
+    <% if user_signed_in? %>
+      <% if @product.user == current_user %>
+        <%= link_to "商品の編集", edit_request_product_path(@product), method: :get, class: "item-red-btn" %>
+        <p class="or-text">or</p>
+        <%= link_to "削除", request_product_path(@product), data: { turbo_method: :delete }, class: "item-destroy" %>
+      <% else %> 
+          <div class="option">
+      <div class="favorite-btn">
+        <%= image_tag "star.png", class: "favorite-star-icon", width: "20", height: "20" %>
+        <span>お気に入り 0</span>
+      </div>
+      <div class="report-btn">
+        <%= image_tag "flag.png", class: "report-flag-icon", width: "20", height: "20" %>
+        <span>不適切な商品の通報</span>
+      </div>
+    </div>
+      <%= link_to(new_request_product_path(@request), class: 'exhibit-btn') do %>
+  <span class='purchase-btn-text'>出品する</span>
+  <%= image_tag 'icon_camera.png', size: '185x50', class: "purchase-btn-icon" %>
+<% end %>
+      <% end %>
+    <% end %>
+    <div class="item-explain-box">
+      <span>商品説明</span>
+      <p><%= @product.description %></p>
+    </div>
+    <table class="detail-table">
+      <tbody>
+        <tr>
+          <th class="detail-item">出品者</th>
+          <td class="detail-value"><%= @product.user.nickname %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">商品の状態</th>
+          <td class="detail-value"><%= @product.condition.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">発送元の地域</th>
+          <td class="detail-value"><%= @product.shipping_area.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">発送日の目安</th>
+          <td class="detail-value"><%= @product.shipping_day.name %></td>
+        </tr>
+      </tbody>
+    </table>
+    <% if user_signed_in? %>
+      <% if current_user.id != @product.user_id %>
+        <%= link_to "購入画面に進む", request_product_purchases_path(@request, @product), data: { turbo: false }, class:"item-red-btn" %>
+      <% end %>
+    <% else %>
+      <%= link_to "購入画面に進む", new_user_session_path, class:"item-red-btn" %>
+    <% end %>
+  </div>
+  <%# /商品の概要 %>
+  <div class="comment-box">
+    <form>
+      <textarea class="comment-text"></textarea>
+      <p class="comment-warn">
+        相手のことを考え丁寧なコメントを心がけましょう。
+        <br>
+        不快な言葉遣いなどは利用制限や退会処分となることがあります。
+      </p>
+      <button type="submit" class="comment-btn">
+        <%= image_tag "comment.png", class: "comment-flag-icon", width: "20", height: "25" %>
+        <span>コメントする</span>
+      </button>
+    </form>
+  </div>
+  <div class="links">
+    <a href="#" class="change-item-btn">
+      ＜ 前の商品
+    </a>
+    <a href="#" class="change-item-btn">
+      後ろの商品 ＞
+    </a>
+  </div>
+</div>
+
+<%= render "shared/footer" %>

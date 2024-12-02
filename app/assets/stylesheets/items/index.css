@@ -258,6 +258,7 @@ a {
 .item-img {
   width: 33vh;
   height: 33vh;
+  object-fit: cover;  /* 画像の比率を保ちながらサイズを調整 */
 }
 
 .sold-out {
