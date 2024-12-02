@@ -83,3 +83,4 @@ gem 'pry-rails'
 gem 'gon'
 gem 'payjp'
 gem "aws-sdk-s3", require: false
+gem 'unicorn', '6.1.0'
