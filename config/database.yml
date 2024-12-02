@@ -52,7 +52,6 @@ test:
 production:
   <<: *default
   database: wants_prototype_production
-  password: <%= ENV["DATABASE_PASSWORD"] %>
   adapter: mysql2
   username: root
   password: <%= ENV['DATABASE_PASSWORD'] %>
