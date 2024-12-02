@@ -17,7 +17,7 @@ default: &default
   password:
   socket: /var/lib/mysql/mysql.sock
 
-  
+
 development:
   <<: *default
   database: wants_prototype_development
@@ -55,4 +55,5 @@ production:
   password: <%= ENV["DATABASE_PASSWORD"] %>
   adapter: mysql2
   username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
