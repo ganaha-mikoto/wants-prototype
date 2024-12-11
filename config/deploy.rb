@@ -1,4 +1,3 @@
-	
 # capistranoのバージョンを記載。固定のバージョンを利用し続け、バージョン変更によるトラブルを防止する
 lock '3.19.1'
 
@@ -13,7 +12,7 @@ set :branch, 'main'
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
 set :rbenv_type, :user
-set :rbenv_ruby, 'ruby 3.2.0' #カリキュラム通りに進めた場合、’3.2.0’ です
+set :rbenv_ruby, '3.3.6'  # 3.2.0から3.3.6に変更
 
 # どの公開鍵を利用してデプロイするか
 set :ssh_options, auth_methods: ['publickey'],
