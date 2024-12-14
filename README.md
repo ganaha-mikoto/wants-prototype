@@ -27,7 +27,7 @@ http://35.73.93.86:3000/
 3. 投稿ボタンで商品を提案
 
 ## アプリケーションの特徴
-- ユーザーのニーズに基づいた商品提案
+- ユーザーのニ���ズに基づいた商品提案
 - 予算範囲での商品マッチング
 - カテゴリー別の閲覧
 - 取引の安全性確保
@@ -35,13 +35,16 @@ http://35.73.93.86:3000/
 
 ## 実装予定の機能
 - [ ] チャット機能
-- [ ] 検索機能の強化
+- [ ] カテゴリー分類
+- [ ] マイページ機能
+- [ ] ガイドラインや利用規約
+- [ ] 検索機能
 - [ ] 評価システムの実装
 - [ ] 通知機能の追加
 
 ## データベース設計
-## データベース設計
-ER図：https://github.com/ganaha-mikoto/wants-prototype/blob/3cf30930050d4b892f03c10f42f37d4b014942ae/README.md
+ER図：https://github.com/ganaha-mikoto/wants-prototype/blob/main/wants.dio
+
 ## users テーブル
 
 | Column             | Type   | Options                        |
