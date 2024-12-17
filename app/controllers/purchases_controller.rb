@@ -2,6 +2,7 @@ require 'payjp'
 
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_request  
   before_action :set_product, only: [:index, :create]
   before_action :move_to_root, only: [:index, :create]
 
@@ -34,6 +35,10 @@ class PurchasesController < ApplicationController
       :postal_code, :prefecture_id, :city,
       :addresses, :building, :phone_number
     ).merge(token: params[:token])
+  end
+
+  def set_request  
+    @request = Request.find(params[:request_id])
   end
 
   def pay_product

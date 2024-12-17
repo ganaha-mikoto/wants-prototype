@@ -18,9 +18,9 @@
           <%= @product.title %>
         </h2>
         <div class='buy-item-price'>
-          <p class='item-price-text'>¥<%= @product.price %></p> <!-- 商品価格を表示 -->
+          <p class='item-price-text'>¥<%= @product.price %></p>
           <p class='item-price-sub-text'>
-            <%= ShippingCharge.find(@product.shipping_charge_id).name if @product.shipping_charge_id %>
+            <%= @request.shipping_charge.name %>
           </p>
         </div>
       </div>

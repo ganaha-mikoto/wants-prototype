@@ -59,7 +59,8 @@ class ProductsController < ApplicationController
       :image,
       :condition_id,
       :shipping_area_id,
-      :shipping_day_id
+      :shipping_day_id,
+      :shipping_charge_id
     )
   end
 
