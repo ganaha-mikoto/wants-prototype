@@ -38,6 +38,10 @@ http://35.73.93.86/
 - カテゴリー別の閲覧
 - 取引の安全性確保
 - クレジットカード決済対応
+- レスポンシブデザインによるスマートフォン対応
+  - メディアクエリを使用した画面サイズに応じたレイアウト調整
+  - タッチ操作に最適化されたUIデザイン
+  - スマートフォンでの閲覧性を考慮したフォントサイズと余白の調整
 
 ## 実装予定の機能
 - [ ] チャット機能
@@ -151,8 +155,8 @@ ER図：https://github.com/ganaha-mikoto/wants-prototype/blob/main/wants.dio
 
 
 ## 開発環境
-- Ruby 2.6.5
-- Ruby on Rails 6.0.0
+- Ruby 3.2.6
+- Ruby on Rails 7.0.0
 - MySQL 5.6.51
 - JavaScript
 - AWS (EC2,S3)
@@ -166,5 +170,44 @@ ER図：https://github.com/ganaha-mikoto/wants-prototype/blob/main/wants.dio
 % rails db:create
 % rails db:migrate
 % rails s
+
+## 工夫した点
+### レスポンシブデザインの実装
+- メディアクエリを活用し、様々な画面サイズに対応
+- スマートフォンユーザーの使いやすさを重視したUI/UXデザイン
+- 画像のサイズ最適化による表示速度の向上
+- タッチデバイスでの操作性を考慮したボタンサイズとレイアウト
+
+### その他の工夫
+- 直感的な操作フローの設計
+- エラーメッセージの日本語対応
+- セキュリティ対策の実装
+- パフォーマンスの最適化
+
+## 使用技術
+### フロントエンド
+- HTML/CSS
+- JavaScript
+- Bootstrap 4.5.0
+
+### バックエンド
+- Ruby 3.2.6
+- Ruby on Rails 7.0.0
+- MySQL 5.6.51
+
+### インフラ
+- AWS (EC2, S3)
+- Nginx
+- Unicorn
+- Capybara
+
+
+### テスト
+- RSpec
+- FactoryBot
+
+### その他
+- Git/GitHub（バージョン管理）
+- VSCode/Cursor（開発環境）
 
 
