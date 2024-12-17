@@ -1,6 +1,32 @@
 ja:
   devise:
+    sessions:
+      user:
+        signed_in: "ログインしました"
+        signed_out: "ログアウトしました"
+      signed_in: "ログインしました"
+      signed_out: "ログアウトしました"
     failure:
-      invalid: 'メールアドレスまたはパスワードが違います。'
-      not_found_in_database: 'メールアドレスまたはパスワードが違います。'
-      unauthenticated: 'ログインもしくはアカウント登録してください。' 
+      already_authenticated: "すでにログインしています"
+      unauthenticated: "ログインもしくはアカウント登録してください"
+      invalid: "メールアドレスまたはパスワードが正しくありません"
+      not_found_in_database: "メールアドレスまたはパスワードが正しくありません"
+      timeout: "セッションがタイムアウトしました。もう一度ログインしてください"
+      locked: "アカウントがロックされています"
+    registrations:
+      signed_up: "アカウント登録が完了しました"
+      updated: "アカウント情報を変更しました"
+      destroyed: "アカウントを削除しました。またのご利用をお待ちしております"
+    passwords:
+      send_instructions: "パスワードの再設定について数分以内にメールでご連絡いたします"
+      updated: "パスワードが正しく変更されました"
+    confirmations:
+      confirmed: "メールアドレスが確認できました"
+      send_instructions: "アカウントの有効化について数分以内にメールでご連絡いたします"
+    mailer:
+      confirmation_instructions:
+        subject: "アカウントの有効化について"
+      reset_password_instructions:
+        subject: "パスワードの再設定について"
+      unlock_instructions:
+        subject: "アカウントのロック解除について"
